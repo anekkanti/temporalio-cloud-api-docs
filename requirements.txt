@@ -1,0 +1,14 @@
+# Requirements for the Temporal Cloud API Documentation Generator
+# This tool primarily uses Python standard library modules
+
+# Optional: For enhanced JSON formatting and parsing
+# jsonschema>=4.0.0
+
+# Optional: For colored terminal output
+# colorama>=0.4.0
+
+# Optional: For progress bars during parsing
+# tqdm>=4.60.0
+
+# The tool is designed to work with Python 3.7+ and standard library modules only
+# No additional dependencies are strictly required for basic functionality 
