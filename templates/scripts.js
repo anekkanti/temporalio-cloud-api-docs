@@ -310,6 +310,53 @@ function initializeLinkButtons() {
     });
 }
 
+// Initialize copy buttons for curl examples
+function initializeCopyButtons() {
+    document.querySelectorAll('.copy-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = button.getAttribute('data-copy-target');
+            const codeElement = document.getElementById(targetId);
+            
+            if (codeElement) {
+                const curlCommand = codeElement.getAttribute('data-curl-command');
+                
+                navigator.clipboard.writeText(curlCommand).then(() => {
+                    // Show success feedback
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = curlCommand;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        button.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy curl command: ', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            }
+        });
+    });
+}
+
 // Tab functionality
 function initializeTabs() {
     document.querySelectorAll('.tab-button').forEach(button => {
@@ -336,4 +383,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSearch();
     initializeLinkButtons();
     initializeTabs();
+    initializeCopyButtons();
 });

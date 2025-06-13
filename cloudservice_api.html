@@ -340,6 +340,41 @@
             margin: 0;
         }
         
+        .code-block-container {
+            position: relative;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .copy-button.copied {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        
+        .code-block-container pre {
+            padding-right: 5rem;
+        }
+        
         .method-divider {
             height: 1px;
             background-color: var(--border-color);
@@ -860,12 +895,18 @@
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getusers">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getusers" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getusers" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/users&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/users&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getusers">
 <pre><code>
@@ -956,12 +997,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getuser">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getuser" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getuser" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/users/{user_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/users/{user_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getuser">
 <pre><code>
@@ -1061,7 +1108,24 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createuser">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createuser" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createuser" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/users&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;email&quot;: &quot;example_string&quot;,
+    &quot;access&quot;: {
+      &quot;account_access&quot;: {
+        &quot;role&quot;: &quot;example_role&quot;
+      }
+    }
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/users&quot; \
@@ -1079,6 +1143,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createuser">
 <pre><code>
@@ -1188,7 +1253,26 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updateuser">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updateuser" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updateuser" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/users/{user_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;user_id&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;email&quot;: &quot;example_string&quot;,
+    &quot;access&quot;: {
+      &quot;account_access&quot;: {
+        &quot;role&quot;: &quot;example_role&quot;
+      }
+    }
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/users/{user_id}&quot; \
@@ -1208,6 +1292,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updateuser">
 <pre><code>
@@ -1312,13 +1397,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deleteuser">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deleteuser" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deleteuser" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/users/{user_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/users/{user_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deleteuser">
 <pre><code>
@@ -1422,7 +1514,22 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-setusernamespaceaccess">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-setusernamespaceaccess" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-setusernamespaceaccess" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/users/{user_id}/access&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;user_id&quot;: &quot;example_string&quot;,
+  &quot;access&quot;: {
+    &quot;permission&quot;: &quot;example_permission&quot;
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/users/{user_id}/access&quot; \
@@ -1438,6 +1545,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-setusernamespaceaccess">
 <pre><code>
@@ -1526,12 +1634,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getasyncoperation">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getasyncoperation" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getasyncoperation" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/operations/{async_operation_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/operations/{async_operation_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getasyncoperation">
 <pre><code>
@@ -1623,7 +1737,21 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createnamespace">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createnamespace" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createnamespace" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;regions&quot;: &quot;example_string&quot;,
+    &quot;retention_days&quot;: 123
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces&quot; \
@@ -1638,6 +1766,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createnamespace">
 <pre><code>
@@ -1744,12 +1873,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getnamespaces">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getnamespaces" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getnamespaces" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getnamespaces">
 <pre><code>
@@ -1829,12 +1964,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getnamespace">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getnamespace" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getnamespace" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getnamespace">
 <pre><code>
@@ -1929,7 +2070,23 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updatenamespace">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updatenamespace" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updatenamespace" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;regions&quot;: &quot;example_string&quot;,
+    &quot;retention_days&quot;: 123
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}&quot; \
@@ -1946,6 +2103,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updatenamespace">
 <pre><code>
@@ -2059,7 +2217,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-renamecustomsearchattribute">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-renamecustomsearchattribute" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-renamecustomsearchattribute" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/rename-custom-search-attribute&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;existing_custom_search_attribute_name&quot;: &quot;example_string&quot;,
+  &quot;new_custom_search_attribute_name&quot;: &quot;example_string&quot;,
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/rename-custom-search-attribute&quot; \
@@ -2073,6 +2244,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-renamecustomsearchattribute">
 <pre><code>
@@ -2171,13 +2343,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deletenamespace">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deletenamespace" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deletenamespace" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deletenamespace">
 <pre><code>
@@ -2269,7 +2448,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-failovernamespaceregion">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-failovernamespaceregion" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-failovernamespaceregion" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/failover-region&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;region&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/failover-region&quot; \
@@ -2281,6 +2471,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-failovernamespaceregion">
 <pre><code>
@@ -2383,7 +2574,19 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-addnamespaceregion">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-addnamespaceregion" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-addnamespaceregion" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/add-region&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;region&quot;: &quot;example_string&quot;,
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/add-region&quot; \
@@ -2396,6 +2599,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-addnamespaceregion">
 <pre><code>
@@ -2499,13 +2703,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deletenamespaceregion">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deletenamespaceregion" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deletenamespaceregion" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/regions/{region}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/regions/{region}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deletenamespaceregion">
 <pre><code>
@@ -2568,12 +2779,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getregions">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getregions" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getregions" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/regions&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/regions&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getregions">
 <pre><code>
@@ -2655,12 +2872,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getregion">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getregion" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getregion" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/regions/{region}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/regions/{region}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getregion">
 <pre><code>
@@ -2764,12 +2987,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getapikeys">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getapikeys" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getapikeys" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/api-keys&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/api-keys&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getapikeys">
 <pre><code>
@@ -2856,12 +3085,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getapikey">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getapikey" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getapikey" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/api-keys/{key_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/api-keys/{key_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getapikey">
 <pre><code>
@@ -2963,7 +3198,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createapikey">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createapikey" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createapikey" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/api-keys&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;owner_id&quot;: &quot;example_string&quot;,
+    &quot;owner_type&quot;: &quot;example_ownertype&quot;
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/api-keys&quot; \
@@ -2977,6 +3225,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createapikey">
 <pre><code>
@@ -3083,7 +3332,22 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updateapikey">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updateapikey" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updateapikey" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/api-keys/{key_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;key_id&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;owner_id&quot;: &quot;example_string&quot;,
+    &quot;owner_type&quot;: &quot;example_ownertype&quot;
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/api-keys/{key_id}&quot; \
@@ -3099,6 +3363,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updateapikey">
 <pre><code>
@@ -3199,13 +3464,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deleteapikey">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deleteapikey" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deleteapikey" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/api-keys/{key_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/api-keys/{key_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deleteapikey">
 <pre><code>
@@ -3315,12 +3587,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getnexusendpoints">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getnexusendpoints" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getnexusendpoints" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getnexusendpoints">
 <pre><code>
@@ -3415,12 +3693,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getnexusendpoint">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getnexusendpoint" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getnexusendpoint" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints/{endpoint_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints/{endpoint_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getnexusendpoint">
 <pre><code>
@@ -3524,7 +3808,28 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createnexusendpoint">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createnexusendpoint" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createnexusendpoint" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;target_spec&quot;: {
+      &quot;worker_target_spec&quot;: {
+        &quot;namespace_id&quot;: &quot;example_string&quot;,
+        &quot;task_queue&quot;: &quot;example_string&quot;
+      }
+    },
+    &quot;policy_specs&quot;: {
+      &quot;allowed_cloud_namespace_policy_spec&quot;: &quot;example_name&quot;
+    }
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints&quot; \
@@ -3546,6 +3851,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createnexusendpoint">
 <pre><code>
@@ -3659,7 +3965,30 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updatenexusendpoint">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updatenexusendpoint" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updatenexusendpoint" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints/{endpoint_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;endpoint_id&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;target_spec&quot;: {
+      &quot;worker_target_spec&quot;: {
+        &quot;namespace_id&quot;: &quot;example_string&quot;,
+        &quot;task_queue&quot;: &quot;example_string&quot;
+      }
+    },
+    &quot;policy_specs&quot;: {
+      &quot;allowed_cloud_namespace_policy_spec&quot;: &quot;example_name&quot;
+    }
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints/{endpoint_id}&quot; \
@@ -3683,6 +4012,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updatenexusendpoint">
 <pre><code>
@@ -3791,13 +4121,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deletenexusendpoint">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deletenexusendpoint" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deletenexusendpoint" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints/{endpoint_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/nexus/endpoints/{endpoint_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deletenexusendpoint">
 <pre><code>
@@ -3919,12 +4256,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getusergroups">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getusergroups" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getusergroups" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getusergroups">
 <pre><code>
@@ -4018,12 +4361,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getusergroup">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getusergroup" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getusergroup" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getusergroup">
 <pre><code>
@@ -4126,7 +4475,27 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createusergroup">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createusergroup" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createusergroup" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;display_name&quot;: &quot;example_string&quot;,
+    &quot;access&quot;: {
+      &quot;account_access&quot;: {
+        &quot;role&quot;: &quot;example_role&quot;
+      }
+    },
+    &quot;google_group&quot;: {
+      &quot;email_address&quot;: &quot;example_string&quot;
+    }
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups&quot; \
@@ -4147,6 +4516,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createusergroup">
 <pre><code>
@@ -4259,7 +4629,29 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updateusergroup">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updateusergroup" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updateusergroup" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;group_id&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;display_name&quot;: &quot;example_string&quot;,
+    &quot;access&quot;: {
+      &quot;account_access&quot;: {
+        &quot;role&quot;: &quot;example_role&quot;
+      }
+    },
+    &quot;google_group&quot;: {
+      &quot;email_address&quot;: &quot;example_string&quot;
+    }
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}&quot; \
@@ -4282,6 +4674,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updateusergroup">
 <pre><code>
@@ -4389,13 +4782,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deleteusergroup">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deleteusergroup" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deleteusergroup" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deleteusergroup">
 <pre><code>
@@ -4499,7 +4899,22 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-setusergroupnamespaceaccess">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-setusergroupnamespaceaccess" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-setusergroupnamespaceaccess" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/user-groups/{group_id}/access&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;group_id&quot;: &quot;example_string&quot;,
+  &quot;access&quot;: {
+    &quot;permission&quot;: &quot;example_permission&quot;
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/user-groups/{group_id}/access&quot; \
@@ -4515,6 +4930,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-setusergroupnamespaceaccess">
 <pre><code>
@@ -4615,7 +5031,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-addusergroupmember">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-addusergroupmember" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-addusergroupmember" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}/members&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;group_id&quot;: &quot;example_string&quot;,
+  &quot;member_id&quot;: &quot;unique_identifier_123&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}/members&quot; \
@@ -4627,6 +5054,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-addusergroupmember">
 <pre><code>
@@ -4723,7 +5151,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-removeusergroupmember">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-removeusergroupmember" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-removeusergroupmember" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}/remove-member&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;group_id&quot;: &quot;example_string&quot;,
+  &quot;member_id&quot;: &quot;unique_identifier_123&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}/remove-member&quot; \
@@ -4735,6 +5174,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-removeusergroupmember">
 <pre><code>
@@ -4837,12 +5277,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getusergroupmembers">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getusergroupmembers" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getusergroupmembers" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}/members&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/user-groups/{group_id}/members&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getusergroupmembers">
 <pre><code>
@@ -4937,7 +5383,25 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createserviceaccount">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createserviceaccount" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createserviceaccount" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/service-accounts&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;access&quot;: {
+      &quot;account_access&quot;: {
+        &quot;role&quot;: &quot;example_role&quot;
+      }
+    },
+    &quot;namespace_scoped_access&quot;: &quot;example_name&quot;
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/service-accounts&quot; \
@@ -4956,6 +5420,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createserviceaccount">
 <pre><code>
@@ -5048,12 +5513,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getserviceaccount">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getserviceaccount" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getserviceaccount" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/service-accounts/{service_account_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/service-accounts/{service_account_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getserviceaccount">
 <pre><code>
@@ -5154,12 +5625,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getserviceaccounts">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getserviceaccounts" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getserviceaccounts" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/service-accounts&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/service-accounts&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getserviceaccounts">
 <pre><code>
@@ -5269,7 +5746,27 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updateserviceaccount">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updateserviceaccount" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updateserviceaccount" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/service-accounts/{service_account_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;service_account_id&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;access&quot;: {
+      &quot;account_access&quot;: {
+        &quot;role&quot;: &quot;example_role&quot;
+      }
+    },
+    &quot;namespace_scoped_access&quot;: &quot;example_name&quot;
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/service-accounts/{service_account_id}&quot; \
@@ -5290,6 +5787,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updateserviceaccount">
 <pre><code>
@@ -5395,13 +5893,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deleteserviceaccount">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deleteserviceaccount" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deleteserviceaccount" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/service-accounts/{service_account_id}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/service-accounts/{service_account_id}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deleteserviceaccount">
 <pre><code>
@@ -5505,12 +6010,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getusage">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getusage" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getusage" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/usage&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/usage&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getusage">
 <pre><code>
@@ -5587,12 +6098,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getaccount">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getaccount" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getaccount" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/account&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/account&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getaccount">
 <pre><code>
@@ -5689,7 +6206,22 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updateaccount">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updateaccount" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updateaccount" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/account&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;spec&quot;: {
+    &quot;metrics&quot;: {
+      &quot;accepted_client_ca&quot;: &quot;base64_encoded_data&quot;
+    }
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/account&quot; \
@@ -5705,6 +6237,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updateaccount">
 <pre><code>
@@ -5805,7 +6338,26 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-createnamespaceexportsink">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-createnamespaceexportsink" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-createnamespaceexportsink" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;enabled&quot;: true,
+    &quot;s3&quot;: {
+      &quot;role_name&quot;: &quot;example_string&quot;,
+      &quot;bucket_name&quot;: &quot;example_string&quot;,
+      &quot;region&quot;: &quot;example_string&quot;
+    }
+  },
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks&quot; \
@@ -5825,6 +6377,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-createnamespaceexportsink">
 <pre><code>
@@ -5923,12 +6476,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getnamespaceexportsink">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getnamespaceexportsink" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getnamespaceexportsink" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/{name}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/{name}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getnamespaceexportsink">
 <pre><code>
@@ -6027,12 +6586,18 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-getnamespaceexportsinks">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-getnamespaceexportsinks" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-getnamespaceexportsinks" data-curl-command="curl \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-getnamespaceexportsinks">
 <pre><code>
@@ -6134,7 +6699,27 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-updatenamespaceexportsink">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-updatenamespaceexportsink" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-updatenamespaceexportsink" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/{spec.name}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;enabled&quot;: true,
+    &quot;s3&quot;: {
+      &quot;role_name&quot;: &quot;example_string&quot;,
+      &quot;bucket_name&quot;: &quot;example_string&quot;,
+      &quot;region&quot;: &quot;example_string&quot;
+    }
+  },
+  &quot;resource_version&quot;: &quot;example_string&quot;,
+  &quot;async_operation_id&quot;: &quot;example_string&quot;
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/{spec.name}&quot; \
@@ -6155,6 +6740,7 @@ curl \
   &quot;async_operation_id&quot;: &quot;example_string&quot;
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-updatenamespaceexportsink">
 <pre><code>
@@ -6266,13 +6852,20 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-deletenamespaceexportsink">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-deletenamespaceexportsink" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-deletenamespaceexportsink" data-curl-command="curl \
+  -X DELETE \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/{name}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot;">
 curl \
   -X DELETE \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/{name}&quot; \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer YOUR_API_KEY&quot;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-deletenamespaceexportsink">
 <pre><code>
@@ -6341,7 +6934,25 @@ Authorization: Bearer YOUR_API_KEY
 </div>
 <div class="tab-content">
 <div class="tab-pane active" id="curl-validatenamespaceexportsink">
-<pre><code>
+<div class="code-block-container">
+<button class="copy-button" data-copy-target="curl-code-validatenamespaceexportsink" title="Copy curl command">Copy</button>
+<pre><code id="curl-code-validatenamespaceexportsink" data-curl-command="curl \
+  -X POST \
+  &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/validate&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer YOUR_API_KEY&quot; \
+  -d &#x27;{
+  &quot;namespace&quot;: &quot;example_string&quot;,
+  &quot;spec&quot;: {
+    &quot;name&quot;: &quot;example_string&quot;,
+    &quot;enabled&quot;: true,
+    &quot;s3&quot;: {
+      &quot;role_name&quot;: &quot;example_string&quot;,
+      &quot;bucket_name&quot;: &quot;example_string&quot;,
+      &quot;region&quot;: &quot;example_string&quot;
+    }
+  }
+}&#x27;">
 curl \
   -X POST \
   &quot;https://saas-api.tmprl.cloud/cloud/namespaces/{namespace}/export-sinks/validate&quot; \
@@ -6360,6 +6971,7 @@ curl \
   }
 }&#x27;
 </code></pre>
+</div>
 </div>
 <div class="tab-pane" id="http-validatenamespaceexportsink">
 <pre><code>
@@ -8612,6 +9224,53 @@ function initializeLinkButtons() {
     });
 }
 
+// Initialize copy buttons for curl examples
+function initializeCopyButtons() {
+    document.querySelectorAll('.copy-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = button.getAttribute('data-copy-target');
+            const codeElement = document.getElementById(targetId);
+            
+            if (codeElement) {
+                const curlCommand = codeElement.getAttribute('data-curl-command');
+                
+                navigator.clipboard.writeText(curlCommand).then(() => {
+                    // Show success feedback
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = curlCommand;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        button.classList.add('copied');
+                        
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy curl command: ', err);
+                    }
+                    document.body.removeChild(textArea);
+                });
+            }
+        });
+    });
+}
+
 // Tab functionality
 function initializeTabs() {
     document.querySelectorAll('.tab-button').forEach(button => {
@@ -8638,6 +9297,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSearch();
     initializeLinkButtons();
     initializeTabs();
+    initializeCopyButtons();
 });
 </script>
 </body>

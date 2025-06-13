@@ -668,8 +668,23 @@ class HTMLDocumentationGenerator:
                 escaped_body = example_body.replace("'", "'\"'\"'")
                 curl_parts.append(f"-d '{escaped_body}'")
         
-        # Format the curl command with line continuations for readability
-        doc.append('<pre><code>')
+        # Generate the curl command string for copying
+        if len(curl_parts) <= 3:  # Simple one-liner for GET requests
+            curl_command = ' '.join(curl_parts)
+        else:  # Multi-line format for complex requests
+            curl_lines = [curl_parts[0] + ' \\']
+            for part in curl_parts[1:-1]:
+                curl_lines.append(f'  {part} \\')
+            curl_lines.append(f'  {curl_parts[-1]}')
+            curl_command = '\n'.join(curl_lines)
+        
+        # Create the code block with copy button
+        method_id = method.name.lower()
+        doc.append('<div class="code-block-container">')
+        doc.append(f'<button class="copy-button" data-copy-target="curl-code-{method_id}" title="Copy curl command">Copy</button>')
+        doc.append(f'<pre><code id="curl-code-{method_id}" data-curl-command="{html.escape(curl_command)}">')
+        
+        # Format the display version
         if len(curl_parts) <= 3:  # Simple one-liner for GET requests
             doc.append(html.escape(' '.join(curl_parts)))
         else:  # Multi-line format for complex requests
@@ -677,7 +692,9 @@ class HTMLDocumentationGenerator:
             for part in curl_parts[1:-1]:
                 doc.append(html.escape(f'  {part} \\'))
             doc.append(html.escape(f'  {curl_parts[-1]}'))
+        
         doc.append('</code></pre>')
+        doc.append('</div>')
         
         return doc
     
